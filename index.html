@@ -1,152 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Sắp xếp danh sách bằng kéo thả</title>
-
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient(135deg, #89f7fe, #66a6ff);
-        position: relative;
-        overflow: hidden;
-    }
-    body::before {
-        content: "";
-        position: absolute;
-        width: 600px;
-        height: 600px;
-        background: rgba(255,255,255,0.2);
-        filter: blur(150px);
-        border-radius: 50%;
-        top: -150px;
-        right: -150px;
-        animation: glow 6s infinite alternate ease-in-out;
-    }
-
-    @keyframes glow {
-        0% { transform: translate(0,0); }
-        100% { transform: translate(-80px, 80px); }
-    }
-    .container {
-        width: 350px;
-        background: rgba(255,255,255,0.95);
-        padding: 25px;
-        border-radius: 15px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255,255,255,0.6);
-        animation: fadeIn 0.7s ease;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    h2 {
-        text-align: center;
-        color: #333;
-        margin-bottom: 18px;
-    }
-
-    ul {
-        padding: 0;
-        margin: 0;
-    }
-
-    li {
-        list-style: none;
-        padding: 12px 15px;
-        background: #f2f5fa;
-        margin: 8px 0;
-        cursor: grab;
-        border-radius: 10px;
-        border: 1px solid #d8deea;
-        transition: 0.2s;
-        font-size: 16px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    li:hover {
-        background: #e7ecf5;
-        transform: scale(1.02);
-    }
-
-    li.dragging {
-        opacity: 0.5;
-        background: #cfd8e8;
-    }
-
-    li.placeholder {
-        height: 45px;
-        border: 2px dashed #4f7ac8;
-        border-radius: 10px;
-        margin: 8px 0;
-    }
-</style>
+    <meta charset="UTF-8">
+    <title>Đăng ký xét song ngành – Trường Đại học XYZ</title>
+    <link rel="stylesheet" href="tintuc.css">
 </head>
 <body>
-
-<div class="container">
-    <h2>Sắp xếp danh sách</h2>
-
-    <ul id="list">
-        <li draggable="true">📌 Công việc 1</li>
-        <li draggable="true">📌 Công việc 2</li>
-        <li draggable="true">📌 Công việc 3</li>
-        <li draggable="true">📌 Công việc 4</li>
-        <li draggable="true">📌 Công việc 5</li>
-        <li draggable="true">📌 Công việc 6</li>
-        <li draggable="true">📌 Công việc 7</li>
-        <li draggable="true">📌 Công việc 8</li>
-    </ul>
+<div class="header">
+    <h1>Đăng ký xét song ngành</h1>
+    <p>Trường Đại học Sư Phạm TP.HCM – Quy định & Chỉ tiêu tuyển sinh</p>
 </div>
-
-<script>
-let dragging = null;
-const placeholder = document.createElement("li");
-placeholder.classList.add("placeholder");
-
-const list = document.getElementById("list");
-
-list.addEventListener("dragstart", (e) => {
-    dragging = e.target;
-    dragging.classList.add("dragging");
-});
-
-list.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    const items = [...list.querySelectorAll("li:not(.dragging)")];
-    const y = e.clientY;
-
-    let nextItem = items.find(item => y <= item.offsetTop + item.offsetHeight / 2);
-
-    if (nextItem) {
-        list.insertBefore(placeholder, nextItem);
-    } else {
-        list.appendChild(placeholder);
-    }
-});
-
-list.addEventListener("drop", () => {
-    dragging.classList.remove("dragging");
-    list.insertBefore(dragging, placeholder);
-    placeholder.remove();
-});
-
-list.addEventListener("dragend", () => {
-    dragging?.classList.remove("dragging");
-    placeholder.remove();
-});
-</script>
-
+<div class="container">
+    <h2>Quy định đăng ký xét song ngành</h2>
+    <ul>
+        <li>Sinh viên chỉ được đăng ký học chương trình thứ hai khi đã tích lũy đủ số tín chỉ theo khung chương trình năm thứ nhất của chương trình thứ nhất. Tại thời điểm đăng ký, sinh viên phải đáp ứng một trong hai điều kiện sau:
+            <ul>
+                <li><b>a)</b> Học lực theo điểm trung bình tích lũy xếp loại khá trở lên và đáp ứng ngưỡng bảo đảm chất lượng của chương trình thứ hai.</li>
+                <li><b>b)</b> Học lực theo điểm trung bình tích lũy xếp loại trung bình và đáp ứng điều kiện trúng tuyển của chương trình thứ hai.</li>
+            </ul>
+        </li>
+        <li>Trong quá trình học cùng lúc hai chương trình, nếu điểm trung bình tích lũy của chương trình thứ nhất dưới trung bình hoặc bị cảnh báo học vụ thì bị buộc thôi học chương trình thứ hai.</li>
+        <li>Thời gian tối đa được phép học khi theo học hai chương trình bằng với thời gian tối đa của chương trình thứ nhất.</li>
+        <li>Sinh viên chỉ được xét tốt nghiệp chương trình thứ hai nếu đã đủ điều kiện tốt nghiệp chương trình thứ nhất và đã học ít nhất 2 năm kể từ thời điểm đăng ký chương trình thứ hai.</li>
+    </ul>
+    <h2>Thông tin hướng dẫn</h2>
+    <h3>1. Quy trình đăng ký xét tuyển</h3>
+    <ol>
+        <li>Kiểm tra số điện thoại cá nhân chính xác trong hệ thống quản lý đào tạo (nếu sai liên hệ Phòng CTCT&HSSV để cập nhật).</li>
+        <li>
+            Đăng ký xét tuyển trên trang cá nhân:
+            <a href="https://online.hcmue.edu.vn/student/dangkysongnganh" target="_blank">
+                https://online.hcmue.edu.vn/student/dangkysongnganh
+            </a>
+        </li>
+    </ol>
+    <h3>2. Thời hạn đăng ký và thông báo kết quả</h3>
+    <ul>
+        <li><b>Thời gian đăng ký:</b> Từ 01/11/2025 đến ngày 08/11/2025.</li>
+        <li><b>Dự kiến thông báo kết quả xét tuyển:</b> ngày 30/11/2025.</li>
+    </ul>
+    <h2>Chỉ tiêu tuyển sinh đợt 11/2025</h2>
+    <!-- ===== BẢNG CHỈ TIÊU 1–10 ===== -->
+    <table>
+        <tr>
+            <th>TT</th>
+            <th>Tên ngành</th>
+            <th>Chỉ tiêu</th>
+        </tr>
+        <tr><td>1</td><td>Giáo dục học</td><td>9</td></tr>
+        <tr><td>2</td><td>Quản lý giáo dục</td><td>1</td></tr>
+        <tr><td>3</td><td>Giáo dục Tiểu học</td><td>98</td></tr>
+        <tr><td>4</td><td>Giáo dục Đặc biệt</td><td>12</td></tr>
+        <tr><td>5</td><td>Giáo dục công dân</td><td>8</td></tr>
+        <tr><td>6</td><td>Giáo dục Chính trị</td><td>1</td></tr>
+        <tr><td>7</td><td>Sư phạm Toán học</td><td>14</td></tr>
+        <tr><td>8</td><td>Sư phạm Tin học</td><td>21</td></tr>
+        <tr><td>9</td><td>Sư phạm Vật lý</td><td>6</td></tr>
+        <tr><td>10</td><td>Sư phạm Hóa học</td><td>2</td></tr>
+    </table>
+    <!-- ===== BẢNG CHỈ TIÊU 11–20 ===== -->
+    <table>
+        <tr>
+            <th>TT</th>
+            <th>Tên ngành</th>
+            <th>Chỉ tiêu</th>
+        </tr>
+        <tr><td>11</td><td>Sư phạm Sinh học</td><td>12</td></tr>
+        <tr><td>12</td><td>Sư phạm Ngữ văn</td><td>5</td></tr>
+        <tr><td>13</td><td>Sư phạm Lịch sử</td><td>9</td></tr>
+        <tr><td>14</td><td>Sư phạm Địa lý</td><td>5</td></tr>
+        <tr><td>15</td><td>Sư phạm Tiếng Anh</td><td>11</td></tr>
+        <tr><td>16</td><td>Sư phạm Tiếng Nga</td><td>7</td></tr>
+        <tr><td>17</td><td>Sư phạm Tiếng Pháp</td><td>2</td></tr>
+        <tr><td>18</td><td>Sư phạm Công nghệ</td><td>35</td></tr>
+        <tr><td>19</td><td>Sư phạm Khoa học tự nhiên</td><td>34</td></tr>
+        <tr><td>20</td><td>Sư phạm Lịch sử – Địa lý</td><td>46</td></tr>
+    </table>
+    <!-- ===== BẢNG CHỈ TIÊU 21–30 ===== -->
+    <table>
+        <tr>
+            <th>TT</th>
+            <th>Tên ngành</th>
+            <th>Chỉ tiêu</th>
+        </tr>
+        <tr><td>21</td><td>Ngôn ngữ Anh</td><td>13</td></tr>
+        <tr><td>22</td><td>Ngôn ngữ Nga</td><td>96</td></tr>
+        <tr><td>23</td><td>Ngôn ngữ Pháp</td><td>107</td></tr>
+        <tr><td>24</td><td>Ngôn ngữ Trung Quốc</td><td>30</td></tr>
+        <tr><td>25</td><td>Ngôn ngữ Nhật</td><td>113</td></tr>
+        <tr><td>26</td><td>Ngôn ngữ Hàn Quốc</td><td>42</td></tr>
+        <tr><td>27</td><td>Tâm lý học</td><td>110</td></tr>
+        <tr><td>28</td><td>Tâm lý học giáo dục</td><td>119</td></tr>
+        <tr><td>29</td><td>Quốc tế học</td><td>28</td></tr>
+        <tr><td>30</td><td>Việt Nam học</td><td>25</td></tr>
+    </table>
+    <!-- ===== BẢNG CHỈ TIÊU 31–36 ===== -->
+    <table>
+        <tr>
+            <th>TT</th>
+            <th>Tên ngành</th>
+            <th>Chỉ tiêu</th>
+        </tr>
+        <tr><td>31</td><td>Sinh học ứng dụng</td><td>18</td></tr>
+        <tr><td>32</td><td>Vật lý học</td><td>14</td></tr>
+        <tr><td>33</td><td>Hóa học</td><td>12</td></tr>
+        <tr><td>34</td><td>Công nghệ thông tin</td><td>39</td></tr>
+        <tr><td>35</td><td>Công tác xã hội</td><td>67</td></tr>
+        <tr><td>36</td><td>Du lịch</td><td>20</td></tr>
+    </table>
+</div>
 </body>
 </html>
